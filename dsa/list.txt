@@ -1,0 +1,8 @@
+list of dsa code:
+bfs
+dfs
+dsu
+segment tree
+fenwick
+lca
+mst - kruskal
