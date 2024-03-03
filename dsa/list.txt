@@ -6,3 +6,4 @@ segment tree
 fenwick
 lca
 mst - kruskal
+dijkstra
