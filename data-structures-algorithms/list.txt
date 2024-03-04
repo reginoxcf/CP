@@ -3,8 +3,11 @@ bfs
 dfs
 dsu
 segment tree
-fenwick
+fenwick tree
 lca
 mst - kruskal
 dijkstra
 trie
+art_points
+bridges
+tarjan's algo for scc
