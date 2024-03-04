@@ -1,5 +1,5 @@
 /*
-Strongly Connected Components in Directed Graph
+Strongly Connected Components in Directed Graph using Tarjan's algorithm
  */
 #include<bits/stdc++.h>
 #define task "test"
