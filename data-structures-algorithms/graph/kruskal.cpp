@@ -1,11 +1,13 @@
+/* AC code to https://cses.fi/problemset/task/1675/ using Kruskal's MST algorithm */
 #include<bits/stdc++.h>
 #define ll long long
-using namespace std;
-const ll maxn = 1e6+3;
+#define task "test"
 #define pll pair<ll,ll>
 #define ppll pair<ll,pair<ll,ll>>
 #define fi first
 #define se second
+using namespace std;
+const ll maxn = 1e6+3;
 struct DSU{
 	ll par[maxn], sz[maxn];
 	void make_set(ll u){
@@ -26,37 +28,36 @@ struct DSU{
 	}	
 } dsu;
 ll n, m, x, y, w;
-vector<pll> adj[maxn];
 vector<ppll> v;
-
+ 
 ll kruskal(){
-	for(ll i = 0; i <= n; i++) dsu.make_set(i);
+	for(ll i = 1; i <= n; i++) dsu.make_set(i);
 	sort(v.begin(), v.end());
 	ll cost = 0, cnt = 0;
-	for(ll i = 0; i < (ll)v.size(); i++){
-		ppll q = v[i];
-		if(dsu.find_set(q.se.fi) == dsu.find_set(q.se.se)) continue;
-		cost += q.fi;
-		dsu.union_set(q.se.fi, q.se.se);
+	for(auto [w, u]:v){
+		if(dsu.find_set(u.fi) == dsu.find_set(u.se)) continue;
+		cost += w;
+		dsu.union_set(u.fi, u.se);
 		cnt++;
 		if(cnt == n-1) break;
 	}
+	if(cnt != n-1) cost = -1;
 	return cost;
 }
-
+ 
 int main(){
-	freopen("test.inp","r",stdin);
-	freopen("test.out","w",stdout);
+	if(fopen(task".inp","r")){
+		freopen(task".inp","r",stdin);
+		freopen(task".out","w",stdout);
+	}
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	cin >> n >> m;
 	for(ll i = 1; i <= m; i++){
 		cin >> x >> y >> w;
-		adj[x].push_back({y, w});
 		v.push_back({w, {x, y}});
 	}
-	auto st = chrono::steady_clock::now();
-	cout << kruskal();
-	auto e = chrono::steady_clock::now();
-	cerr << chrono::duration <double,milli> (e-st).count()*1000 << " ms\n";
+	ll kr = kruskal();
+	if(kr < 0) cout << "IMPOSSIBLE";
+	else cout << kr;
 	return 0;
 }
