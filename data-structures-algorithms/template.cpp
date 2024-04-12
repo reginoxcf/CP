@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 #define ll long long
-#define all(v) begin(v) end(v)
+#define all(v) begin(v), end(v)
 #define pi pair<int, int>
 #define vi vector<int>
 #define task "test"
