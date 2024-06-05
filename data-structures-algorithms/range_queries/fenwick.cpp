@@ -1,9 +1,4 @@
-#include<bits/stdc++.h>
-#define ll long long
-#define task "test"
-using namespace std;
-const ll maxn = 1e6+3;
-ll n, x, y, q;
+const int maxn = 1e6+3;
 struct Fenwick{
 	// range add range query (sum)
 	ll t[maxn][2];
@@ -25,25 +20,7 @@ struct Fenwick{
 	ll query(ll a, ll b){
 		return get(b) - get(a-1);
 	}
-} tree;
-
-int main(){
-	ios_base::sync_with_stdio(0); cin.tie(0);
-	if(fopen(task".inp","r")){
-		freopen(task".inp","r",stdin);
-		freopen(task".out","w",stdout);
-	}
-	cin >> n;
-	for(ll i = 1; i <= n; i++){
-		cin >> x;
-		tree.add(i, i, x);
-	}
-	cin >> q;
-	while(q--){
-		ll t, l, r, v;
-		cin >> t >> l >> r;
-		if(t==1){cin >> v; tree.add(l, r, v);}
-		else{cout << tree.query(l, r) << "\n";}
-	}
-	return 0;
-}
+};
+//Usage:
+// - add(l, r, x): increase a[l], a[l+1], ..., a[r] by x
+// - query(l, r): find a[l] + a[l+1] + ... + a[r]
