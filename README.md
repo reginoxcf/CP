@@ -1,4 +1,4 @@
-# [reginox](https://codeforces.com/profile/reginox)'s data structures and algorithms templates
-data structures and algorithms (work in progress)
-
-credits: cp-algorithms, kactl, atcoder library among others
+# [reginox](https://codeforces.com/profile/reginox)'s CP essentials
+This contains:
+- DSA templates (work in progress)
+- other stuff
