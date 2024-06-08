@@ -3,7 +3,7 @@ const ll maxn = 1e6+3, inf = 1e12; //change this to preference/problem constrain
 struct func {
     ll m, b;
     ll operator()(ll x) { return m * x + b; }
-} a[maxn * 4];
+} L[maxn * 4];
 
 func create(ll a, ll b){
     func x; x.m = a, x.b = b;
@@ -14,14 +14,14 @@ struct ImplicitLiChaoTree{
     ll left[maxn*4], right[maxn*4], cnt = 0;
     void insert(ll l, ll r, func seg, ll id=0) {
         if(l + 1 == r) {
-            if(seg(l) > a[id](l)) a[id] = seg;
+            if(seg(l) > L[id](l)) L[id] = seg;
             return;
         }
         ll mid = (l + r) >> 1;
-        if(a[id].m > seg.m) swap(a[id], seg);
-        if(a[id](mid) < seg(mid)){
+        if(L[id].m > seg.m) swap(L[id], seg);
+        if(L[id](mid) < seg(mid)){
             if(left[id] == 0) left[id] = ++cnt;
-            swap(a[id], seg);
+            swap(L[id], seg);
             insert(l, mid, seg, left[id]);
         }
         else{
@@ -30,15 +30,15 @@ struct ImplicitLiChaoTree{
         }
     }
     ll query(ll l, ll r, ll x, ll id=0) {
-        if(l + 1 == r) return a[id](x);
+        if(l + 1 == r) return L[id](x);
         ll mid = (l + r) >> 1;
         if(x < mid){
             if(left[id] == 0) left[id] = ++cnt;
-            return max(a[id](x), query(l, mid, x, left[id]));
+            return max(L[id](x), query(l, mid, x, left[id]));
         }
         else{
             if(right[id] == 0) right[id] = ++cnt;
-            return max(a[id](x), query(mid, r, x, right[id]));
+            return max(L[id](x), query(mid, r, x, right[id]));
         }
     }
 } ;
@@ -49,6 +49,7 @@ struct "func" has 2 numbers:
 if "var" is a "func" then var(x) will return mx+b
 
 Usage:
+- create(a, b): create function f(x) = ax+b and returns it (struct func)
 - insert(l, r, func, id): insert function "func" into LCT
 l, r is range of LCT
 id is index of LCT root
