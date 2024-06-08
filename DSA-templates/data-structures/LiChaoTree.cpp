@@ -50,6 +50,7 @@ if "var" is a "func" then var(x) will return mx+b
 
 Usage:
 - create(a, b): create function f(x) = ax+b and returns it (struct func)
+
 - insert(l, r, func, id): insert function "func" into LCT
 l, r is range of LCT
 id is index of LCT root
