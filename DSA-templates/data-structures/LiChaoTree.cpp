@@ -64,3 +64,4 @@ e.g.: query(-inf, inf, 2)
 For the most accurate results, l, r, and id should be the same across all function calls
 It is recommended for l = -inf, r = inf and id = 0/1
  */
+//Credits: https://robert1003.github.io/2020/02/06/li-chao-segment-tree.html
