@@ -15,6 +15,7 @@ Data structures:
 - Segment tree
 - Disjoint set union (DSU)
 - Trie
+- Implicit Li Chao Tree
 Miscellaneous:
 - Bignumber operations
 - Mo's algorithm
