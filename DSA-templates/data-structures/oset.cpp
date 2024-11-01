@@ -6,3 +6,7 @@ using namespace __gnu_pbds;
 
 // in contest, this can also be replaced with segment / fenwick tree + walk on tree + number compression (if needed)
 // set a tree saving number of elements
+
+// USAGE
+// find_by_order() : returns an iterator to the k-th largest element (counting from zero)
+// order_of_key() : the number of items in a set that are strictly smaller than our item
