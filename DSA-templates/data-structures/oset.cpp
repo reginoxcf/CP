@@ -10,3 +10,6 @@ using namespace __gnu_pbds;
 // USAGE
 // find_by_order() : returns an iterator to the k-th largest element (counting from zero)
 // order_of_key() : the number of items in a set that are strictly smaller than our item
+
+// for multiset: replace less<int> with less_equal<int>
+// REMEMBER THAT OSET IS SLOW AS F AND USE ALTERNATIVES IF CAN!!!!
