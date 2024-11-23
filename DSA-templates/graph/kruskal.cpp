@@ -7,9 +7,9 @@
 #define fi first
 #define se second
 using namespace std;
-const ll maxn = 1e6+3;
+const ll N = 1e6+3;
 struct DSU{
-	ll par[maxn], sz[maxn];
+	ll par[N], sz[N];
 	void make_set(ll u){
 		par[u]=u;
 		sz[u]=1;

@@ -5,10 +5,10 @@ Extended AC code to https://oj.vnoi.info/problem/graph_
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-const ll maxn = 1e5+3;
-ll n, m, low[maxn], num[maxn], cnt, cau, ch[maxn], kh;
-bool khop[maxn];
-vector<ll> adj[maxn], list_khop;
+const ll N = 1e5+3;
+ll n, m, low[N], num[N], cnt, cau, ch[N], kh;
+bool khop[N];
+vector<ll> adj[N], list_khop;
 vector<pair<ll,ll>> list_cau;
 
 void tarjan(ll u, ll p){

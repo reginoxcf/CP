@@ -3,9 +3,9 @@
 #define ll long long
 #define task "test"
 using namespace std;
-const ll maxn = 1e6+3;
+const ll N = 1e6+3;
 ll t, n, u, v, x;
-ll par[maxn], sz[maxn];
+ll par[N], sz[N];
 void make_set(ll u){
 	par[u]=u;
 	sz[u]=1;

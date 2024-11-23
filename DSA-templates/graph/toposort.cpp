@@ -11,9 +11,9 @@ https://cses.fi/problemset/task/1679/
 #define pii pair<int, int>
 #define vi vector<int>
 using namespace std;
-const int maxn = 1e5+3;
-int n, m, in[maxn], l, topo[maxn];
-vector<int> g[maxn];
+const int N = 1e5+3;
+int n, m, in[N], l, topo[N];
+vector<int> g[N];
 queue<int> q;
 
 int main(){

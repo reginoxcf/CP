@@ -1,7 +1,7 @@
-const ll maxn = 1e6+3;
+const ll N = 1e6+3;
 struct LazySegTree{
 	//Segment tree lazy propagation subarray sum
-	ll tree[maxn*4+1], lazy[maxn*4+1];
+	ll tree[N*4+1], lazy[N*4+1];
 	void reset(){
 		memset(tree,0,sizeof(tree));
 		memset(lazy,0,sizeof(lazy));

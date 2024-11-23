@@ -1,7 +1,7 @@
-const int maxn = 1e6+3, mod = 1e9+7;
+const int N = 1e6+3, mod = 1e9+7;
 struct betterLazyST{
     //supports range paint/add/multiply/sum
-    ll tree[maxn*4], lmul[maxn*4], ladd[maxn*4], sz[maxn*4];
+    ll tree[N*4], lmul[N*4], ladd[N*4], sz[N*4];
     void build(ll id, ll l, ll r){
         sz[id]=(r-l+1);
         tree[id]=ladd[id]=0;

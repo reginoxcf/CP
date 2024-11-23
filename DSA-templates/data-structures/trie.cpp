@@ -2,11 +2,11 @@
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
-const int maxn = 1e6+3;
+const int N = 1e6+3;
 struct Trie{
 	struct node{
 		int child[26], cnt, exist;
-	} tree[maxn];
+	} tree[N];
 	int cur;
 	Trie() : cur(0){
 		memset(tree[0].child, -1, sizeof(tree[0].child));

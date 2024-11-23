@@ -3,10 +3,10 @@
 #define ll long long
 #define task "test"
 using namespace std;
-const ll maxn = 1e6+3;
-ll n, m, s, t, a, b, par[maxn];
-bool vis[maxn];
-vector<ll> adj[maxn];
+const ll N = 1e6+3;
+ll n, m, s, t, a, b, par[N];
+bool vis[N];
+vector<ll> adj[N];
 vector<ll> res, re;
 queue<ll> q;
 

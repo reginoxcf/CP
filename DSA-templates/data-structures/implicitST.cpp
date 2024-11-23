@@ -1,10 +1,10 @@
-const long long maxn = 1e6+3, inf = 1ll<<60;
+const long long N = 1e6+3, inf = 1ll<<60;
 struct implicitST{
     //Implicit(dynamic) segment tree - point add range sum
     //Update: log(inf), about 61
     //Query: log(inf), about 61
-    long long cl[maxn*4], cr[maxn*4], cnt=1;
-    long long st[maxn*4];
+    long long cl[N*4], cr[N*4], cnt=1;
+    long long st[N*4];
     void update(long long id, long long l, long long r, long long u, long long val){
         if(u < l || r < u) return ;
         if(l == r){

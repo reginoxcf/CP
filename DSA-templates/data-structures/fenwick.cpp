@@ -1,7 +1,7 @@
-const int maxn = 1e6+3;
+const int N = 1e6+3;
 struct Fenwick{
 	// range add range query (sum)
-	ll t[maxn][2];
+	ll t[N][2];
 	void upd(ll tp, ll id, ll x){
 		for(ll i = id; i <= n; i+=i&(-i)) t[i][tp]+=x;
 	}

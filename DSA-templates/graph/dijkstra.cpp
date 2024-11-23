@@ -7,9 +7,9 @@ https://cses.fi/problemset/task/1671
 #define task "test"
 #define pll pair<ll,ll>
 using namespace std;
-const ll maxn = 1e5+3;
-ll n, m, d[maxn], last[maxn];
-vector<pll> g[maxn];
+const ll N = 1e5+3;
+ll n, m, d[N], last[N];
+vector<pll> g[N];
 vector<ll> path;
 priority_queue<pll, vector<pll>, greater<pll>> pq;
  

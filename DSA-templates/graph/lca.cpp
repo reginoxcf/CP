@@ -6,9 +6,9 @@
 #define task ""
 using namespace std;
 ll n, q, l, r;
-const ll LOG = 22, maxn = 1e6+3;
-ll depth[maxn], p[maxn][LOG+2];
-vector<ll> children[maxn];
+const ll LOG = 22, N = 1e6+3;
+ll depth[N], p[N][LOG+2];
+vector<ll> children[N];
 void dfs(ll u, ll pa){
 	depth[u]=depth[pa]+1;
 	p[u][0]=pa;

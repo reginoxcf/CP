@@ -1,7 +1,7 @@
-const ll maxn = 1e6+3;
+const ll N = 1e6+3;
 struct SegTree{
     //Segment tree subarray sum
-    ll tree[maxn*4+1];
+    ll tree[N*4+1];
     void reset(){
         memset(tree,0,sizeof(tree));
     }

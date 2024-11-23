@@ -4,10 +4,10 @@ Strongly Connected Components in Directed Graph using Tarjan's algorithm
 #include<bits/stdc++.h>
 #define task "test"
 using namespace std;
-const int maxn = 1e5+3;
-int n, m, cnt, num[maxn], low[maxn], group[maxn], h;
-bool a_in[maxn];
-vector<int> adj[maxn], adj2[maxn], scc[maxn];
+const int N = 1e5+3;
+int n, m, cnt, num[N], low[N], group[N], h;
+bool a_in[N];
+vector<int> adj[N], adj2[N], scc[N];
 stack<int> st;
 queue<int> qu;
  

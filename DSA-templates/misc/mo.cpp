@@ -5,10 +5,10 @@ using namespace std;
 struct query{
 	int l, r, id, val;
 };
-const int maxn = 2e5+3, block_size = 450, maxv = 1e6+3;
-int n, t, a[maxn], cnt[maxv];
+const int N = 2e5+3, block_size = 450, maxv = 1e6+3;
+int n, t, a[N], cnt[maxv];
 int res;
-query q[maxn];
+query q[N];
 void solve(int pl, int pr, int l, int r, int id){
 	int ml = min(pl, l);
 	int mr = max(pr, r);
