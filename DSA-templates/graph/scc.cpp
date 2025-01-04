@@ -7,14 +7,14 @@ using namespace std;
 const int N = 1e5+3;
 int n, m, cnt, num[N], low[N], group[N], h;
 bool a_in[N];
-vector<int> adj[N], adj2[N], scc[N];
+vector<int> g[N], g2[N], scc[N];
 stack<int> st;
 queue<int> qu;
  
 void dfs(int u){
     num[u] = ++cnt, low[u] = num[u];
     st.push(u);
-    for(auto v : adj[u]){
+    for(auto v : g[u]){
         if(num[v]!=0) low[u] = min(low[u], num[v]);
         else{
             dfs(v);
@@ -43,7 +43,7 @@ int main(){
     for(int i = 1; i <= m; i++){
         int u, v;
         cin >> u >> v;
-        adj[u].push_back(v);
+        g[u].push_back(v);
     }
     for(int i = 1; i <= n; i++){
         if(num[i] == 0) dfs(i);

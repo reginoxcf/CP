@@ -12,16 +12,21 @@ ll n, m, d[N], last[N];
 vector<pll> g[N];
 vector<ll> path;
 priority_queue<pll, vector<pll>, greater<pll>> pq;
- 
-void dijkstra(ll s){
+
+void dijkstra(ll s)
+{
     pq.push({0, s}), d[s] = 0;
     pll p;
-    while(!pq.empty()){
+    while (!pq.empty())
+    {
         p = pq.top();
         pq.pop();
-        if(d[p.second] != p.first) continue;
-        for(auto [v, w]:g[p.second]){
-            if(d[v] > p.first + w){
+        if (d[p.second] != p.first)
+            continue;
+        for (auto [v, w] : g[p.second])
+        {
+            if (d[v] > p.first + w)
+            {
                 d[v] = p.first + w;
                 last[v] = p.second;
                 pq.push({d[v], v});
