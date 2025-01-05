@@ -1,41 +1,50 @@
-//DSU data structure
+//https://judge.yosupo.jp/problem/unionfind
 #include <bits/stdc++.h>
 #define ll long long
-#define task "test"
+#define ld long double
+#define all(v) begin(v), end(v)
+#define pi pair<int, int>
+#define vi vector<int>
 using namespace std;
-const ll N = 1e6+3;
-ll t, n, u, v, x;
-ll par[N], sz[N];
-void make_set(ll u){
-	par[u]=u;
-	sz[u]=1;
-}
-ll find_set(ll u){
-	if(u==par[u]) return u;
-	return par[u]=find_set(par[u]);
-}
-void union_set(ll u, ll v){
-	u = find_set(u), v = find_set(v);
-	if(u!=v){
-		if(sz[u]<sz[v]) swap(u, v);
-		par[v] = u;
-		sz[u]+=sz[v];
+
+struct DSU{
+	int n;
+	vector<int> lab;
+	DSU(int n){
+		this->n = n;
+		lab.resize(n+1, -1);
 	}
-}
+	void resize(int n){
+		this->n = n;
+		lab.resize(n+1, -1);
+	}
+	int find(int u){
+		if(lab[u] < 0) return u;
+		return lab[u] = find(lab[u]);
+	}
+	void join(int u, int v){
+		u = find(u), v = find(v);
+		if(u == v) return;
+		if(lab[u] > lab[v]) swap(u, v);
+		lab[u] += lab[v];
+		lab[v] = u;
+	}
+};
+
 int main(){
-	if(fopen(task".inp","r")){
-		freopen(task".inp","r",stdin);
-		freopen(task".out","w",stdout);
-	}
 	ios_base::sync_with_stdio(0); cin.tie(0);
-	// auto st = chrono::steady_clock::now();
-	cin >> n >> t;
-	for(ll i = 1; i <= n; i++) make_set(i);
+	int n, t; cin >> n >> t;
+	DSU dsu(n);
 	while(t--){
-		cin >> x;
-		if(x==0){cin >> u >> v; union_set(u, v);}
-		else{cin >> u >> v; cout << ((find_set(u) == find_set(v))? "1\n":"0\n");}
+		int x, u, v; cin >> x;
+		if(x==0){
+			cin >> u >> v;
+			dsu.join(u+1, v+1);
+		}
+		else{
+			cin >> u >> v;
+			cout << (dsu.find(u+1) == dsu.find(v+1)? "1\n":"0\n");
+		}
 	}
-	// auto fi = chrono::steady_clock::now();
-	// cout << (chrono::duration <double,milli> (fi-st).count())*1000 << "ms";
+	return 0;
 }
