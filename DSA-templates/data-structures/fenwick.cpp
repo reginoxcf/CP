@@ -1,25 +1,30 @@
-const int N = 1e6+3;
 struct Fenwick{
 	// range add range query (sum)
-	ll t[N][2];
-	void upd(ll tp, ll id, ll x){
-		for(ll i = id; i <= n; i+=i&(-i)) t[i][tp]+=x;
+	vector<vector<ll>> t;
+	int n;
+	Fenwick(int n): n(n){
+		t.assign(n+1, vector<ll>(2, 0));
 	}
-	void add(ll l, ll r, ll x){
+	void resize(int n){
+		this->n = n;
+		t.assign(n+1, vector<ll>(2, 0));
+	}
+	void upd(int tp, int id, ll x){
+		for(int i = id; i <= n; i+=i&(-i)) t[i][tp]+=x;
+	}
+	void add(int l, int r, ll x){
 		upd(0, l, x); upd(0, r+1, -x);
-		upd(1, l, x*(l-1)); upd(1, r+1, -x*r);	
+		upd(1, l, x*(ll)(l-1)); upd(1, r+1, -x*(ll)r);	
 	}
-	ll sum(ll tp, ll id){
+	ll sum(int tp, int id){
 		ll res = 0;
 		for(ll i = id; i > 0; i-=i&(-i)) res+=t[i][tp];
 		return res;
 	}
-	ll get(ll x){
-		return sum(0, x)*x  - sum(1, x);
-	}
-	ll query(ll a, ll b){
-		return get(b) - get(a-1);
-	}
+
+	ll get(int x) {return sum(0, x)*(ll)x  - sum(1, x);}
+
+	ll query(int l, int r) {return get(r) - get(l-1);}
 };
 //Usage:
 // - add(l, r, x): increase a[l], a[l+1], ..., a[r] by x
