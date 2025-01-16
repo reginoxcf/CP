@@ -23,3 +23,6 @@ struct Fenwick{
 		return get(b) - get(a-1);
 	}
 };
+//Usage:
+// - add(l, r, x): increase a[l], a[l+1], ..., a[r] by x
+// - query(l, r): find a[l] + a[l+1] + ... + a[r]
