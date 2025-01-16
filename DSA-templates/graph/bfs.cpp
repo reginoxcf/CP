@@ -6,7 +6,7 @@ using namespace std;
 const ll N = 1e6+3;
 ll n, m, s, t, a, b, par[N];
 bool vis[N];
-vector<ll> adj[N];
+vector<ll> g[N];
 vector<ll> res, re;
 queue<ll> q;
 
@@ -15,7 +15,7 @@ void bfs(){
 		ll st = q.front();
 		q.pop();
 		re.push_back(st);
-		for(auto x:adj[st]){
+		for(auto x:g[st]){
 			if(vis[x]==false){
 				par[x] = st;
 				vis[x] = true;
@@ -34,7 +34,7 @@ int main(){
 	cin >> n >> m >> s >> t;
 	for(ll i = 1; i <= m; i++){
 		cin >> a >> b;
-		adj[a].push_back(b);
+		g[a].push_back(b);
 	}
 	q.push(s);
 	vis[s] = true;

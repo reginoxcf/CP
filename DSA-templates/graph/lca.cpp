@@ -1,53 +1,56 @@
-//Least Common Ancestor of 2 nodes (u, v)
-#include<bits/stdc++.h>
+//lca using binary lifting
+
+#include <bits/stdc++.h>
 #define ll long long
-#define faster ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define sp << " "
-#define task ""
+#define ld long double
+#define all(v) begin(v), end(v)
+#define pi pair<int, int>
+#define vi vector<int>
 using namespace std;
-ll n, q, l, r;
-const ll LOG = 22, N = 1e6+3;
-ll depth[N], p[N][LOG+2];
-vector<ll> children[N];
-void dfs(ll u, ll pa){
-	depth[u]=depth[pa]+1;
-	p[u][0]=pa;
-	for(ll i = 1; i <= LOG; i++) p[u][i]=p[p[u][i-1]][i-1];
-	for(ll i = 0; i < (ll)children[u].size(); i++){
-		dfs(children[u][i],u);
-	}
+const int LOG = 20, N = 1e6+3;
+int n, q;
+vector<int> g[N];
+int depth[N], par[N][LOG+2];
+
+void dfs(int u, int p){
+	depth[u] = depth[p]+1;
+	par[u][0] = p;
+	for(int i = 1; i <= LOG; i++) par[u][i] = par[par[u][i-1]][i-1];
+    for(auto v:g[u]){
+        if(v == p) continue;
+        dfs(v, u);
+    }
 	return ;
 }
 
-ll lca(ll u, ll v){
-	if(depth[u]<depth[v]) swap(u,v);
-	ll k = depth[u]-depth[v];
-	for(ll i = LOG; i >= 0; i--){
-		if(k&(1<<i)){
-			u = p[u][i];
+int lca(int u, int v){
+	if(depth[u] < depth[v]) swap(u, v);
+	int diff = depth[u] - depth[v];
+	for(int i = LOG; i >= 0; i--){
+        if((diff >> i) & 1) u = par[u][i];
+    }
+	if(u == v) return u;
+	for(int i = LOG; i >= 0; i--){
+		if(par[u][i] != par[v][i]){
+			u = par[u][i];
+			v = par[v][i];
 		}
 	}
-	if(u==v) return u;
-	for(ll i = LOG; i >= 0; i--){
-		if(p[u][i]!=p[v][i]){
-			u=p[u][i];
-			v=p[v][i];
-		}
-	}
-	return p[u][0];
+	return par[u][0];
 }
+
 int main(){
-	faster;
+	ios_base::sync_with_stdio(0); cin.tie(0);
 	cin >> n;
-	for(ll i = 1; i < n; i++){
-		cin >> l >> r;
-		children[l].push_back(r);
-	}
+	for(int i = n-1; i; i--){
+        int u, v; cin >> u >> v;
+        g[u].push_back(v); g[v].push_back(u);
+    }
 	dfs(1,0);
 	cin >> q;
 	while(q--){
-		cin >> l >> r;
-		cout << lca(l,r) << "\n";
+		int u, v; cin >> u >> v;
+        cout << lca(u, v) << "\n";
 	}
 	return 0;
 }

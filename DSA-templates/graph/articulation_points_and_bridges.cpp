@@ -8,12 +8,12 @@ using namespace std;
 const ll N = 1e5+3;
 ll n, m, low[N], num[N], cnt, cau, ch[N], kh;
 bool khop[N];
-vector<ll> adj[N], list_khop;
+vector<ll> g[N], list_khop;
 vector<pair<ll,ll>> list_cau;
 
 void tarjan(ll u, ll p){
     num[u] = ++cnt, low[u] = num[u];
-    for(auto v:adj[u]){
+    for(auto v:g[u]){
         if(v==p) continue;
         if(num[v] != 0) low[u] = min(low[u], num[v]);
         else{
@@ -39,12 +39,12 @@ int main(){
     for(ll i = 1; i <= m; i++){
         ll u, v;
         cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
     for(ll i = 1; i <= n; i++){
-        sort(adj[i].begin(), adj[i].end());
-        adj[i].erase(unique(adj[i].begin(), adj[i].end()), adj[i].end());
+        sort(g[i].begin(), g[i].end());
+        g[i].erase(unique(g[i].begin(), g[i].end()), g[i].end());
     }
     for(ll i = 1; i <= n; i++){
         if(num[i] == 0){

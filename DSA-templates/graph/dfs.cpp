@@ -6,7 +6,7 @@ using namespace std;
 const ll N = 1e6+3;
 ll n, m, s, t, a, b;
 bool vis[N], r[N];
-vector<ll> adj[N], path, res, re;
+vector<ll> g[N], path, res, re;
 queue<ll> q;
 
 void dfs(ll st){
@@ -16,7 +16,7 @@ void dfs(ll st){
 	vis[st] = true;
 	if(r[st]==false) re.push_back(st);
 	r[st] = true;
-	for(auto x:adj[st]){
+	for(auto x:g[st]){
 		if(vis[x]==false){
 			path.push_back(x);
 			dfs(x);
@@ -34,7 +34,7 @@ int main(){
 	cin >> n >> m >> s >> t;
 	for(ll i = 1; i <= m; i++){
 		cin >> a >> b;
-		adj[a].push_back(b);
+		g[a].push_back(b);
 	}
 	dfs(s);
 	cout << "Reachable vertices from " << s << ":\n";
