@@ -35,14 +35,15 @@ struct betterLazyST{
                 tree[id]+=val*sz[id];
             }
             else{
-                lmul[id]*=val;
+                lmul[id]*=val;z
                 tree[id]*=val;
                 ladd[id]*=val;
             }
             ladd[id]%=mod;
-            tree[id]%=mod;//Usage:
-// - add(l, r, x): increase a[l], a[l+1], ..., a[r] by x
-// - query(l, r): find a[l] + a[l+1] + ... + a[r]
+            tree[id]%=mod;
+            lmul[id]%=mod;
+            return ;
+        }
         push(id);
         ll mid = (l+r)>>1;
         upd(id*2, l, mid, u, v, t, val);
