@@ -35,7 +35,7 @@ struct betterLazyST{
                 tree[id]+=val*sz[id];
             }
             else{
-                lmul[id]*=val;z
+                lmul[id]*=val;
                 tree[id]*=val;
                 ladd[id]*=val;
             }
