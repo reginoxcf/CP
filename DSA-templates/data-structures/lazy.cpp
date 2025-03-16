@@ -39,13 +39,13 @@ struct LazySegTree{
 /*
 UNTESTED CODE
 struct LazyST{
-	//Segment tree lazy propagation subarray sum
+    int n;
 	vector<pair<ll,ll>> t;
 	void resize(int n){
 		this->n = n;
 		t.resize(n*4+3);
 	}
-	LazySegTree(int n){
+	LazyST(int n){
 		this->n = n;
 		resize(n);
 	}
@@ -57,7 +57,7 @@ struct LazyST{
 		t[id*2+1].second += x;
 		x = 0;
 	}
-	void update(int L, int R, ll v, int id = 1, int l = 1, int r = n){
+	void update(int id, int l, int r, int L, int R, ll v){
 		if(L > r || R < l) return;
 		if(L <= l && r <= R){
 			t[id].first += v;
@@ -65,22 +65,22 @@ struct LazyST{
 			return;
 		}
 		push(id);
-		update(L, R, v, id*2, l, (l+r)/2);
-		update(L, R, v, id*2+1, (l+r+2)/2, r);
+		update(id*2, l, (l+r)/2, L, R, v);
+		update(id*2+1, (l+r+2)/2, r, L, R, v);
 		t[id].first = t[id*2].first + t[id*2+1].first;
 	}
-	ll get(int L, int R, int id = 1, int l = 1, int r = n){
+	ll get(int id, int l, int r, int L, int R){
 		if(L > r || R < l) return 0;
 		if(L <= l && r <= R) return t[id].first;
 		push(id);
-		return get(L, R, id*2, l, (l+r)/2) + get(L, R, id*2+1, (l+r+2)/2, r);
+		return get(id*2, l, (l+r)/2, L, R) + get(id*2+1, (l+r+2)/2, r, L, R);
 	}
-	int walk(int id, ll v, int l = 1, int r = n){
+	int walk(int id, int l, int r, ll v){
 		if(t[id].first < v) return n+1; 
 		if(l == r) return l;
 		push(id);
-		if(t[id*2].first >= v) return walk(v, l, id*2, (l+r)/2);
-		return walk(v-t[id*2].first, id*2+1, (l+r+2)/2, r);
+		if(t[id*2].first >= v) return walk(id*2, l, (l+r)/2, v);
+		return walk(id*2+1, (l+r+2)/2, r, v-t[id*2].first);
 	}
 };
 */
