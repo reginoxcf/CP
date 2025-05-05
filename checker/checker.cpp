@@ -1,6 +1,4 @@
-#include <iostream>
-#include <chrono>
-#include <random>
+#include <bits/stdc++.h>
 #define ll long long
 
 using namespace std;
@@ -13,5 +11,5 @@ int main (int argc, char **argv) {
   mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
   
   //start argv from 2 (1 is test number)
-
+  //atoi(argv[N])
 } 

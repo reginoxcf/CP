@@ -1,20 +1,20 @@
-const ll N = 1e6+3;
+const int N = 1e6+3;
 struct LazySegTree{
 	//Segment tree lazy propagation subarray sum
-	ll tree[N*4+1], lazy[N*4+1];
+	int tree[N*4+1], lazy[N*4+1];
 	void reset(){
 		memset(tree,0,sizeof(tree));
 		memset(lazy,0,sizeof(lazy));
 	}
-	void down(ll id){
-		ll t = lazy[id];
+	void down(int id){
+		int t = lazy[id];
 		tree[id*2+1]+=t;
 		tree[id*2]+=t;
 		lazy[id*2+1]+=t;
 		lazy[id*2]+=t;
 		lazy[id]=0;
 	}
-	void upd(ll id, ll l, ll r, ll u, ll v, ll val){
+	void upd(int id, int l, int r, int u, int v, int val){
 		if(l>r||u>v) return ;
 		if(v<l||r<u) return ;
 		if(u<=l&&r<=v){
@@ -27,7 +27,7 @@ struct LazySegTree{
 		upd(id*2+1,(l+r+2)/2,r,u,v,val);
 		tree[id]=tree[id*2]+tree[id*2+1];
 	}
-	ll get(ll id, ll l, ll r, ll u, ll v){
+	int get(int id, int l, int r, int u, int v){
 		if(u>v||l>r) return 0;
 		if(v<l||r<u) return 0;
 		if(u<=l&&r<=v) return tree[id];
@@ -40,7 +40,7 @@ struct LazySegTree{
 UNTESTED CODE
 struct LazyST{
     int n;
-	vector<pair<ll,ll>> t;
+	vector<pair<int,int>> t;
 	void resize(int n){
 		this->n = n;
 		t.resize(n*4+3);
@@ -50,14 +50,14 @@ struct LazyST{
 		resize(n);
 	}
 	void push(int id){
-		ll &x = t[id].second;
+		int &x = t[id].second;
 		t[id*2].first += x;
 		t[id*2+1].first += x;
 		t[id*2].second += x;
 		t[id*2+1].second += x;
 		x = 0;
 	}
-	void update(int id, int l, int r, int L, int R, ll v){
+	void update(int id, int l, int r, int L, int R, int v){
 		if(L > r || R < l) return;
 		if(L <= l && r <= R){
 			t[id].first += v;
@@ -69,13 +69,13 @@ struct LazyST{
 		update(id*2+1, (l+r+2)/2, r, L, R, v);
 		t[id].first = t[id*2].first + t[id*2+1].first;
 	}
-	ll get(int id, int l, int r, int L, int R){
+	int get(int id, int l, int r, int L, int R){
 		if(L > r || R < l) return 0;
 		if(L <= l && r <= R) return t[id].first;
 		push(id);
 		return get(id*2, l, (l+r)/2, L, R) + get(id*2+1, (l+r+2)/2, r, L, R);
 	}
-	int walk(int id, int l, int r, ll v){
+	int walk(int id, int l, int r, int v){
 		if(t[id].first < v) return n+1; 
 		if(l == r) return l;
 		push(id);
