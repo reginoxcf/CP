@@ -96,8 +96,8 @@ struct Dinic {
         }
         return false;
     }
-    vector<vector<int>> get_paths() {
-        vector<vector<int>> ans;
+    vector<vector<ll>> get_paths() {
+        vector<vector<ll>> ans;
         for (ll i = 0; i < n; i++) edge_sz[i] = gr[i].size() - 1;
         vector<ll> path;
         while (func(source, path)){
