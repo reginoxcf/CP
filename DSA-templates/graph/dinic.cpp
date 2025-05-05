@@ -2,7 +2,7 @@ struct Dinic {
     struct edge {
         ll x, y, w;
     };
-    vector<vector<ll>> gr;
+    vector<vector<int>> gr;
     vector<edge> edges;
     vector<ll> level;
     vector<ll> edge_sz;
@@ -96,8 +96,8 @@ struct Dinic {
         }
         return false;
     }
-    vvi get_paths() {
-        vvi ans;
+    vector<vector<int>> get_paths() {
+        vector<vector<int>> ans;
         for (ll i = 0; i < n; i++) edge_sz[i] = gr[i].size() - 1;
         vector<ll> path;
         while (func(source, path)){
